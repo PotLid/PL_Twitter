@@ -26,7 +26,7 @@ class HomeTableViewController: UITableViewController {
     
     @objc func loadTweets(){
         
-        numberOfTweet = 20
+        numberOfTweet = 5
         
         let myUrl: String = "https://api.twitter.com/1.1/statuses/home_timeline.json"
         let myParams = ["count": numberOfTweet]
@@ -44,7 +44,7 @@ class HomeTableViewController: UITableViewController {
             self.myRefreshControl.endRefreshing()
             
         }, failure: { (Error) in
-            print("Could not retreive tweets! oh no!!")
+            print("Could not retreive tweets! - loadTweets")
         })
     }
     
@@ -52,7 +52,7 @@ class HomeTableViewController: UITableViewController {
         
         let myUrl: String = "https://api.twitter.com/1.1/statuses/home_timeline.json"
         
-        numberOfTweet = numberOfTweet + 20
+        numberOfTweet = numberOfTweet + 5
         let myParams = ["count": numberOfTweet]
         
         TwitterAPICaller.client?.getDictionariesRequest(url: myUrl, parameters: myParams, success: { (tweets: [NSDictionary]) in
@@ -66,7 +66,7 @@ class HomeTableViewController: UITableViewController {
             self.tableView.reloadData()
             
         }, failure: { (Error) in
-            print("Could not retreive tweets! oh no!!")
+            print("Could not retreive tweet! - loadMoreTweets")
         })
     }
     
